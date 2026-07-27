@@ -186,6 +186,30 @@ exports.related = async (req, res) => {
   }
 };
 
+/* GET /api/home — feed beranda */
+exports.home = async (req, res) => {
+  try {
+    const sections = await yt.getHomeFeed(LOCALE);
+    res.setHeader('Cache-Control', 'public, max-age=1800, s-maxage=1800');
+    return res.json({
+      ok: true,
+      sections: sections.map((s) => ({
+        label: s.label,
+        items: s.items.map((i) => ({
+          videoId:     i.videoId,
+          title:       i.title,
+          artist:      i.artist,
+          thumbnail:   i.thumbnail,
+          duration:    yt.formatDuration(i.duration),
+          durationSec: i.duration,
+        })),
+      })),
+    });
+  } catch (e) {
+    return res.status(502).json({ ok: false, message: e.message });
+  }
+};
+
 /* GET /api/status */
 exports.status = (_, res) => res.json({
   ok: true,
