@@ -28,6 +28,7 @@ app.use(express.json({ limit: '1mb' }));
 app.use(express.urlencoded({ extended: true }));
 
 // ── Routes ───────────────────────────────────────────────────────
+// Semua route: /api/search, /api/home, /api/stream, /api/audio, /api/related
 app.use('/api', require('../routes/stream'));
 
 app.get('/', (_, res) => res.json({
