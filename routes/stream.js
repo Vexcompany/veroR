@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const c      = require('../controllers/streamController');
 
+router.get('/home',             c.home);
 router.get('/search',           c.search);
 router.get('/suggest',          c.suggest);
 router.get('/status',           c.status);
