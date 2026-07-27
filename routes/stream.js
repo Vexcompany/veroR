@@ -8,7 +8,7 @@ router.get('/status',           c.status);
 router.get('/related/:videoId', c.related);
 router.get('/audio/:videoId',   c.audio);
 router.head('/audio/:videoId',  c.audio);
-router.get('/',                 c.resolve);
-router.post('/',                c.resolve);
+router.get('/stream',           c.resolve);
+router.post('/stream',          c.resolve);
 
 module.exports = router;
